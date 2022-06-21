@@ -153,6 +153,11 @@ function editContact(firstName, lastName, property, newValue) {
     }
 }
 
+function countContacts(contactArray){
+    let count= contactArray.reduce((a, b) => a.concat(b), []).length;
+    console.log("Number of contacts is: "+count);
+ }
+
 function deleteContact(firstName, lastName) {
     if (contactExists(firstName, lastName)) {
         addressBookArray = addressBookArray.filter((contact) => 
@@ -185,16 +190,3 @@ console.log(addressBookArray);
 
 deleteContact("Paru", "Hanasi");
 console.log(addressBookArray);
-
-// function getCount() {               
-//     const arr = addressBookArray;                       
-//     var count = 0;
-//     arr.forEach(function(arr){
-//         ar.forEach(function(obj){
-//             if(obj.enabled) {
-//                 count++;
-//             }
-//         })
-//     });
-//     return count;           
-// }
