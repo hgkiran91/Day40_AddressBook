@@ -164,24 +164,37 @@ function deleteContact(firstName, lastName) {
 }
 
 try {
-    addressBookArray.push(new Contact("Paru", "Hanasi", "Jayanagar", 
-    "Bangalore", "Karnataka", 560001, "91 1234567890", "sachin@gmail.com"));
+    addressBookArray.push(new Contact("Mohan", "Kumar", "Jayanagar", 
+    "Bangalore", "Karnataka", 560076, "91 953454543", "mohankumar@gmail.com"));
 } catch (e) {
     console.error(e);
 }
 
 try {
-    addressBookArray.push(new Contact("Praju", "Hanasi","RTnagar", 
-    "Bangalore", 'Karnataka', 560039, '91 9874563210', "abc@gmail.com"));
+    addressBookArray.push(new Contact("Madan", "Jain","BTM", 
+    "Bangalore", 'Karnataka', 560067, '91 7434343443', "jainmadan@gmail.com"));
 } catch (e) {
     console.log(e);
 }
 console.log(addressBookArray);
 console.log("\nAfter Editing Contact")
-editContact("Paru", "Hanasi", "city", "Mumbai");
-editContact("Paru", "Hanasi", "state", "Maharashtra");
-editContact("Paru", "Hanasi", "address", "Juhu");
+editContact("Madan", "Jain", "city", "Bangalore");
+editContact("Madan", "Jain", "state", "Karnataka");
+editContact("Madan", "Jain", "address", "xxx");
 console.log(addressBookArray);
 
 deleteContact("Paru", "Hanasi");
 console.log(addressBookArray);
+
+// function getCount() {               
+//     const arr = addressBookArray;                       
+//     var count = 0;
+//     arr.forEach(function(arr){
+//         ar.forEach(function(obj){
+//             if(obj.enabled) {
+//                 count++;
+//             }
+//         })
+//     });
+//     return count;           
+// }
