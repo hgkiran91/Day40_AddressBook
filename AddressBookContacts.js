@@ -108,16 +108,15 @@ class Contact {
 
     toString() {
         return "First Name : " + this.firstName + ", Last Name : " + this.lastName 
-        + ", Address : " + this.address + ", City : " + this.city + ", State : " 
-        + this.state + ", Zip : " + this.zip + ", Phone Number : " + this.phoneNumber 
-        + ", Email : " + this.email;
+        + ", Address : " + this.address + ", City : " + this.city 
+        + ", State : " + this.state + ", Zip : " + this.zip 
+        + ", Phone Number : " + this.phoneNumber + ", Email : " + this.email;
     }
 }
 
 let addressBookArray = new Array();
 function contactExists(firstName, lastName) {
-    return addressBookArray.some(contact => contact.firstName == firstName && 
-        contact.lastName == lastName);
+    return addressBookArray.some(contact => contact.firstName == firstName && contact.lastName == lastName);
 }
 
 function editContact(firstName, lastName, property, newValue) {
@@ -127,19 +126,24 @@ function editContact(firstName, lastName, property, newValue) {
                 addressBookArray.find((contact) => contact.firstName == firstName).address = newValue;
                 break;
             case "city":
-                addressBookArray.find((contact) => contact.firstName == firstName).city = newValue;
+                addressBookArray.find((contact) => contact.firstName == 
+                firstName).city = newValue;
                 break;
             case "state":
-                addressBookArray.find((contact) => contact.firstName == firstName).state = newValue;
+                addressBookArray.find((contact) => contact.firstName == 
+                firstName).state = newValue;
                 break;
             case "zip":
-                addressBookArray.find((contact) => contact.firstName == firstName).zip = newValue;
+                addressBookArray.find((contact) => contact.firstName ==
+                 firstName).zip = newValue;
                 break;
             case "phoneNumber":
-                addressBookArray.find((contact) => contact.firstName == firstName).phoneNumber = newValue;
+                addressBookArray.find((contact) => contact.firstName == 
+                firstName).phoneNumber = newValue;
                 break;
             case "email":
-                addressBookArray.find((contact) => contact.firstName == firstName).email = newValue;
+                addressBookArray.find((contact) => contact.firstName == 
+                firstName).email = newValue;
                 break;
             default:
                 console.log("Enter valid property");
@@ -148,22 +152,36 @@ function editContact(firstName, lastName, property, newValue) {
         console.log("Contact Does Not Exist");
     }
 }
+
+function deleteContact(firstName, lastName) {
+    if (contactExists(firstName, lastName)) {
+        addressBookArray = addressBookArray.filter((contact) => 
+        contact.firstName != firstName && contact.lastName != lastName);
+        console.log(firstName + " " + lastName + "  Contact Deleted");
+    } else {
+        console.log("Contact Does Not Exist");
+    }
+}
+
 try {
-    addressBookArray.push(new Contact("Sachin", "Tendulkar", "Jayanagar",
-     "Bangalore", "Karnataka", 560001, "91 1234567890", "sachin@gmail.com"));
+    addressBookArray.push(new Contact("Paru", "Hanasi", "Jayanagar", 
+    "Bangalore", "Karnataka", 560001, "91 1234567890", "sachin@gmail.com"));
 } catch (e) {
     console.error(e);
 }
 
 try {
-    addressBookArray.push(new Contact("Praju", "Hansi","RTnagar", 
-    "Bangalore", "Karnataka", 560039, "91 1234567890", "abc@gmail.com"));
+    addressBookArray.push(new Contact("Praju", "Hanasi","RTnagar", 
+    "Bangalore", 'Karnataka', 560039, '91 9874563210', "abc@gmail.com"));
 } catch (e) {
     console.log(e);
 }
 console.log(addressBookArray);
 console.log("\nAfter Editing Contact")
-editContact("Sachin", "Tendulkar", "city", "Mumbai");
-editContact("Sachin", "Tendulkar", "state", "Maharashtra");
-editContact("Sachin", "Tendulkar", "address", "Juhu");
+editContact("Paru", "Hanasi", "city", "Mumbai");
+editContact("Paru", "Hanasi", "state", "Maharashtra");
+editContact("Paru", "Hanasi", "address", "Juhu");
+console.log(addressBookArray);
+
+deleteContact("Paru", "Hanasi");
 console.log(addressBookArray);
