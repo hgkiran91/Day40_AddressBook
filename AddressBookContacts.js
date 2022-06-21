@@ -168,6 +168,17 @@ function deleteContact(firstName, lastName) {
     }
 }
 
+function searchByCityOrState(contactArray,cityorstate){
+    if(cityorstate == "Bangalore"){
+        console.log("Contact by city");
+        contactArray.filter(name => name.city == cityorstate).forEach(contact=>console.log(contact.toString()));
+    }
+    if(cityorstate == "Karnataka"){
+        console.log("Contacts by state");
+        contactArray.filter(name => name.state == cityorstate).forEach(contact=>console.log(contact.toString()));
+    }
+}
+
 try {
     addressBookArray.push(new Contact("Mohan", "Kumar", "Jayanagar", 
     "Bangalore", "Karnataka", 560076, "91 953454543", "mohankumar@gmail.com"));
@@ -188,5 +199,10 @@ editContact("Madan", "Jain", "state", "Karnataka");
 editContact("Madan", "Jain", "address", "xxx");
 console.log(addressBookArray);
 
-deleteContact("Paru", "Hanasi");
+deleteContact("Madan", "Jain");
 console.log(addressBookArray);
+countContacts(addressBookArray);
+addContact(addressBookArray,"Mithun", "Kumar");
+console.log(addressBookArray);
+searchByCityOrState(addressBookArray,'Bangalore');
+searchByCityOrState(addressBookArray,'Karnataka');
