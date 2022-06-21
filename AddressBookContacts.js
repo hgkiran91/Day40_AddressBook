@@ -44,33 +44,15 @@ class Contact {
         return this._address;
     }
 
-    get city() {
-        return this._city;
-    }
-
-    get state() {
-        return this._state;
-    }
-
-    get zip() {
-        return this._zip;
-    }
-
-    get phoneNumber() {
-        return this._phoneNumber;
-    }
-
-    get email() {
-        return this._email;
-    }
-
-    
-
     set address(address) {
         if (addressRegex.test(address))
             this._address = address;
         else
             throw new Error( "ADDRESS is Incorrect");
+    }
+
+    get city() {
+        return this._city;
     }
 
     set city(city) {
@@ -80,11 +62,19 @@ class Contact {
             throw new Error("CITY is Incorrect");
     }
 
+    get state() {
+        return this._state;
+    }
+
     set state(state) {
         if (cityStateRegex.test(state))
             this._state = state;
         else
             throw new Error("STATE is Incorrect");
+    }
+
+    get zip() {
+        return this._zip;
     }
 
     set zip(zip) {
@@ -94,11 +84,19 @@ class Contact {
             throw new Error ("ZIP is Incorrect");
     }
 
+    get phoneNumber() {
+        return this._phoneNumber;
+    }
+
     set phoneNumber(phoneNumber) {
         if (phoneNumberRegex.test(phoneNumber))
             this._phoneNumber = phoneNumber;
         else
             throw new Error ("PHONE NUMBER is Incorrect");
+    }
+
+    get email() {
+        return this._email;
     }
 
     set email(email) {
@@ -110,24 +108,62 @@ class Contact {
 
     toString() {
         return "First Name : " + this.firstName + ", Last Name : " + this.lastName 
-        + ", Address : " + this.address + ", City : " + this.city 
-        + ", State : " + this.state + ", Zip : " + this.zip 
-        + ", Phone Number : " + this.phoneNumber + ", Email : " + this.email;
+        + ", Address : " + this.address + ", City : " + this.city + ", State : " 
+        + this.state + ", Zip : " + this.zip + ", Phone Number : " + this.phoneNumber 
+        + ", Email : " + this.email;
     }
 }
 
 let addressBookArray = new Array();
+function contactExists(firstName, lastName) {
+    return addressBookArray.some(contact => contact.firstName == firstName && 
+        contact.lastName == lastName);
+}
+
+function editContact(firstName, lastName, property, newValue) {
+    if (contactExists(firstName, lastName)) {
+        switch (property) {
+            case "address":
+                addressBookArray.find((contact) => contact.firstName == firstName).address = newValue;
+                break;
+            case "city":
+                addressBookArray.find((contact) => contact.firstName == firstName).city = newValue;
+                break;
+            case "state":
+                addressBookArray.find((contact) => contact.firstName == firstName).state = newValue;
+                break;
+            case "zip":
+                addressBookArray.find((contact) => contact.firstName == firstName).zip = newValue;
+                break;
+            case "phoneNumber":
+                addressBookArray.find((contact) => contact.firstName == firstName).phoneNumber = newValue;
+                break;
+            case "email":
+                addressBookArray.find((contact) => contact.firstName == firstName).email = newValue;
+                break;
+            default:
+                console.log("Enter valid property");
+        }
+    } else {
+        console.log("Contact Does Not Exist");
+    }
+}
 try {
-    addressBookArray.push(new Contact("Paru", "Hanasi", "Narendra",
-     "Dharwad", "Karanataka", 580001, "91 1234567890", "paru@gmail.com"));
+    addressBookArray.push(new Contact("Sachin", "Tendulkar", "Jayanagar",
+     "Bangalore", "Karnataka", 560001, "91 1234567890", "sachin@gmail.com"));
 } catch (e) {
     console.error(e);
 }
 
 try {
-    addressBookArray.push(new Contact("Praju", "Hanasi","NarendraNagar", 
-    "Mumbai", "Maharatra", 580001, '91 1234567890', "abc@gmail.com"));
+    addressBookArray.push(new Contact("Praju", "Hansi","RTnagar", 
+    "Bangalore", "Karnataka", 560039, "91 1234567890", "abc@gmail.com"));
 } catch (e) {
     console.log(e);
 }
+console.log(addressBookArray);
+console.log("\nAfter Editing Contact")
+editContact("Sachin", "Tendulkar", "city", "Mumbai");
+editContact("Sachin", "Tendulkar", "state", "Maharashtra");
+editContact("Sachin", "Tendulkar", "address", "Juhu");
 console.log(addressBookArray);
